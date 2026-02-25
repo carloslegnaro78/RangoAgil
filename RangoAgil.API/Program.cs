@@ -10,4 +10,12 @@ builder.Services.AddDbContext<RangoDbContext>(options =>
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
+
+app.MapGet("/rangos", () =>
+{
+
+    return "Está Funcionando Muito bem!!!";
+
+});
+
 app.Run();
