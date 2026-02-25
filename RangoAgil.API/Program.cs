@@ -11,9 +11,14 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
+app.MapGet("/rangos/{numero}/{nome}",(int numero, string nome) => {
+
+    return nome + " " + numero;
+
+});
+
 app.MapGet("/rangos", () =>
 {
-
     return "Está Funcionando Muito bem!!!";
 
 });
