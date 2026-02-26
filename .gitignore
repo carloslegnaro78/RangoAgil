@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/RangoAgil.API/Rango.db
+/RangoAgil.API/Rango.db-shm
+/RangoAgil.API/Rango.db-wal
