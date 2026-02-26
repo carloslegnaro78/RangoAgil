@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RangoAgil.API.DbContexts;
 
@@ -17,8 +18,8 @@ app.MapGet("/rango/{nome}", (RangoDbContext rangoDbContext, string nome) =>
 
 });
 
-app.MapGet("/rango/{id:int}", (RangoDbContext rangoDbContext, int id) =>
-{
+app.MapGet("/rango", (RangoDbContext rangoDbContext, [FromQuery(Name = "RangoId")] int id) => {
+
     return rangoDbContext.Rangos.FirstOrDefault(x => x.Id == id);
 
 });
