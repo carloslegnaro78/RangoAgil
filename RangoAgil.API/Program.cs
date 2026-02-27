@@ -14,11 +14,11 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/rangos", async Task<Results<NoContent, Ok<List<Rango>>>> (RangoDbContext rangoDbContext, [FromQuery(Name = "name")] string rangoNome) =>
+app.MapGet("/rangos", async Task<Results<NoContent, Ok<List<Rango>>>> (RangoDbContext rangoDbContext, [FromQuery(Name = "name")] string? rangoNome) =>
 {
 
     var rangosEntity = await rangoDbContext.Rangos
-        .Where(x => x.Nome.Contains(rangoNome))
+        .Where(x => rangoNome == null || x.Nome.ToLower().Contains(rangoNome.ToLower()))
         .ToListAsync();
 
     if (rangosEntity.Count <= 0 || rangosEntity == null)
