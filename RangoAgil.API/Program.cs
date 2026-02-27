@@ -28,6 +28,13 @@ app.MapGet("/rangos", async Task<Results<NoContent, Ok<List<Rango>>>> (RangoDbCo
 
 });
 
+app.MapGet("/rangos/{rangoId:int}/ingredientes", async (RangoDbContext rangoDbContext, int rangoId) =>
+{
+    return await rangoDbContext.Rangos
+        .Include(rango => rango.Ingredientes)
+        .FirstOrDefaultAsync(rango => rango.Id == rangoId);
+});
+
 app.MapGet("/rango/{id:int}", async (RangoDbContext rangoDbContext, int id) =>
 {
 
